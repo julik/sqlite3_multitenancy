@@ -1,6 +1,6 @@
 require_relative "bootstrap"
 
-ActiveRecord::Base.legacy_connection_handling = false
+ActiveRecord::Base.legacy_connection_handling = false if ActiveRecord::Base.respond_to?(:legacy_connection_handling)
 $databases.each_pair do |n, db_path|
   config_hash = {
     "adapter" => 'sqlite3',
@@ -15,4 +15,4 @@ def named_databases_as_roles(n, from_database_paths)
     query_and_compare!(n)
   end
 end
-perform_tests :named_databases_as_roles, parallel_flows: 8, flow_iterations: 16
+perform_tests :named_databases_as_roles, parallel_flows: 12, flow_iterations: 32

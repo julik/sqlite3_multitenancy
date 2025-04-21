@@ -1,9 +1,10 @@
 require 'bundler/inline'
 require "logger"
 
+ar_version = ENV.fetch("ACTIVERECORD_MAJOR_VERSION", "6")
 gemfile do
   source 'https://rubygems.org'
-  gem "activerecord", "~> 6", require: "active_record"
+  gem "activerecord", "~> #{ar_version}", require: "active_record"
   gem "sqlite3", "~> 1.1" # This has to be of a version activerecord supports, so can't be 2.x
 end
 
@@ -68,6 +69,9 @@ def perform_tests(method_name, parallel_flows: 2, flow_iterations: 4)
   end
   threads.map(&:join)
   exceptions.uniq!(&:class)
+
+  $stdout << "\n" << "Done testing" << "\n"
+
   return unless exceptions.any?
 
   exceptions.each do |e|
@@ -76,4 +80,6 @@ def perform_tests(method_name, parallel_flows: 2, flow_iterations: 4)
       warn line
     end
   end
+
+  exit 1
 end
