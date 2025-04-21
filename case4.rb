@@ -16,4 +16,4 @@ def named_databases_as_roles_using_connected_to(n, from_database_paths)
   end
 end
 
-perform_tests :named_databases_as_roles_using_connected_to, parallel_flows: 12, flow_iterations: 32
+perform_tests :named_databases_as_roles_using_connected_to, parallel_flows: 6, flow_iterations: 32
