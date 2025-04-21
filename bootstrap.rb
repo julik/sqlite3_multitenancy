@@ -72,5 +72,8 @@ def perform_tests(method_name, parallel_flows: 2, flow_iterations: 4)
 
   exceptions.each do |e|
     warn "Exception was raised during one of the tasks: #{e.class} - #{e.message}"
+    e.backtrace.to_a.each do |line|
+      warn line
+    end
   end
 end
