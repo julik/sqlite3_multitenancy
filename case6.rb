@@ -27,4 +27,4 @@ def named_databases_as_roles_using_connected_to_with_fiber_and_just_in_time_esta
   role_playing_fiber.resume
 end
 
-perform_tests :named_databases_as_roles_using_connected_to_with_fiber_and_just_in_time_establish, parallel_flows: 4, flow_iterations: 32
+perform_tests :named_databases_as_roles_using_connected_to_with_fiber_and_just_in_time_establish, parallel_flows: 8, flow_iterations: 128
